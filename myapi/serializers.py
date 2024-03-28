@@ -1,15 +1,22 @@
 # myapi/serializers.py
 from rest_framework import serializers
-from .models import Demand, DemandBranch
+from .models import Demand, Branch, Transaction
 
-class DemandBranchSerializer(serializers.ModelSerializer):
+class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DemandBranch
-        fields = ('branch_number', 'demand_product_A_value', 'demand_product_B_value', 'demand_product_C_value', 'demand_product_D_value')
+        model = Transaction
+        fields = ('productA', 'productB', 'productC', 'productD', 'Gender', 'Age')
+
+class BranchSerializer(serializers.ModelSerializer):
+    transactions = TransactionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Branch
+        fields = ('branch_number', 'transactions')
 
 class DemandSerializer(serializers.ModelSerializer):
-    branches = DemandBranchSerializer(source='demandbranch_set', many=True, read_only=True)
+    data = BranchSerializer(many=True, read_only=True)  # Removed source='data'
 
     class Meta:
         model = Demand
-        fields = ('day', 'branches')
+        fields = ('day', 'data')
