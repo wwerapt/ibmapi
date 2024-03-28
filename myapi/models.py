@@ -10,10 +10,10 @@ class Demand(models.Model):
 class DemandBranch(models.Model):
     demand = models.ForeignKey(Demand, on_delete=models.CASCADE)
     branch_number = models.IntegerField()
-    demand_product_A_value = models.IntegerField()
-    demand_product_B_value = models.IntegerField()
-    demand_product_C_value = models.IntegerField()
-    demand_product_D_value = models.IntegerField()
+    demand_product_A_value = models.IntegerField(null=True)
+    demand_product_B_value = models.IntegerField(null=True)
+    demand_product_C_value = models.IntegerField(null=True)
+    demand_product_D_value = models.IntegerField(null=True)
 
     def __str__(self):
         return f"{self.demand.day} - Branch {self.branch_number}"
