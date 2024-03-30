@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demand Generation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize/modern-normalize.min.css">
+</head>
+<body>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+    <div class="container">
+        <h1>Demand Generation Form</h1>
+        <form method="post" action="{% url 'generate_demand' %}">
+            {% csrf_token %}
+            <div>
+                <div>
+                    <h2>Event Information C</h2>
+                </div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Service Level</th>
+                            <th>Marketing Media</th>
+                            <th>Marketing Campaign</th>
+                            <th>Marketing Touchpoint</th>
+                            <th>Special Event</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Branch 5 (กรุงเทพฯ)</td>
+                            <td><input type="number" name="service_br5" value="1"></td>
+                            <td><input type="number" name="media_br5" value="1"></td>
+                            <td><input type="number" name="campaign_br5" value="1"></td>
+                            <td><input type="number" name="touchpoint_br5" value="1"></td>
+                            <td><input type="number" name="special_br5" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 11 (กรุงเทพฯ)</td>
+                            <td><input type="number" name="service_br11" value="1"></td>
+                            <td><input type="number" name="media_br11" value="1"></td>
+                            <td><input type="number" name="campaign_br11" value="1"></td>
+                            <td><input type="number" name="touchpoint_br11" value="1"></td>
+                            <td><input type="number" name="special_br11" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 6 (ลพบุรี)</td>
+                            <td><input type="number" name="service_br6" value="1"></td>
+                            <td><input type="number" name="media_br6" value="1"></td>
+                            <td><input type="number" name="campaign_br6" value="1"></td>
+                            <td><input type="number" name="touchpoint_br6" value="1"></td>
+                            <td><input type="number" name="special_br6" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 7 (นนทบุรี)</td>
+                            <td><input type="number" name="service_br7" value="1"></td>
+                            <td><input type="number" name="media_br7" value="1"></td>
+                            <td><input type="number" name="campaign_br7" value="1"></td>
+                            <td><input type="number" name="touchpoint_br7" value="1"></td>
+                            <td><input type="number" name="special_br7" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 29 (อยุธยา)</td>
+                            <td><input type="number" name="service_br29" value="1"></td>
+                            <td><input type="number" name="media_br29" value="1"></td>
+                            <td><input type="number" name="campaign_br29" value="1"></td>
+                            <td><input type="number" name="touchpoint_br29" value="1"></td>
+                            <td><input type="number" name="special_br29" value="1"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <div>
+                <div>
+                    <h2>Event Information E</h2>
+                </div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Service Level</th>
+                            <th>Marketing Media</th>
+                            <th>Marketing Campaign</th>
+                            <th>Marketing Touchpoint</th>
+                            <th>Special Event</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Branch 13 (ชลบุรี)</td>
+                            <td><input type="number" name="service_br13" value="1"></td>
+                            <td><input type="number" name="media_br13" value="1"></td>
+                            <td><input type="number" name="campaign_br13" value="1"></td>
+                            <td><input type="number" name="touchpoint_br13" value="1"></td>
+                            <td><input type="number" name="special_br13" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 2 (ระยอง)</td>
+                            <td><input type="number" name="service_br2" value="1"></td>
+                            <td><input type="number" name="media_br2" value="1"></td>
+                            <td><input type="number" name="campaign_br2" value="1"></td>
+                            <td><input type="number" name="touchpoint_br2" value="1"></td>
+                            <td><input type="number" name="special_br2" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 9 (ฉะเชิงเทรา)</td>
+                            <td><input type="number" name="service_br9" value="1"></td>
+                            <td><input type="number" name="media_br9" value="1"></td>
+                            <td><input type="number" name="campaign_br9" value="1"></td>
+                            <td><input type="number" name="touchpoint_br9" value="1"></td>
+                            <td><input type="number" name="special_br9" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 18 (จันทบุรี)</td>
+                            <td><input type="number" name="service_br18" value="1"></td>
+                            <td><input type="number" name="media_br18" value="1"></td>
+                            <td><input type="number" name="campaign_br18" value="1"></td>
+                            <td><input type="number" name="touchpoint_br18" value="1"></td>
+                            <td><input type="number" name="special_br18" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 19 (ปราจีนบุรี)</td>
+                            <td><input type="number" name="service_br19" value="1"></td>
+                            <td><input type="number" name="media_br19" value="1"></td>
+                            <td><input type="number" name="campaign_br19" value="1"></td>
+                            <td><input type="number" name="touchpoint_br19" value="1"></td>
+                            <td><input type="number" name="special_br19" value="1"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                
+
+            <div>
+                <div>
+                    <h2>Event Information N</h2>
+                </div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Marketing Media</th>
+                            <th>Marketing Campaign</th>
+                            <th>Marketing Touchpoint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Branch 4 (พิษณุโลก)</td>
+                            <td><input type="number" name="media_br4" value="1"></td>
+                            <td><input type="number" name="campaign_br4" value="1"></td>
+                            <td><input type="number" name="touchpoint_br4" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 8 (เพชรบูรณ์)</td>
+                            <td><input type="number" name="media_br8" value="1"></td>
+                            <td><input type="number" name="campaign_br8" value="1"></td>
+                            <td><input type="number" name="touchpoint_br8" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 10 (เชียงราย)</td>
+                            <td><input type="number" name="media_br10" value="1"></td>
+                            <td><input type="number" name="campaign_br10" value="1"></td>
+                            <td><input type="number" name="touchpoint_br10" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 20 (ลำปาง)</td>
+                            <td><input type="number" name="media_br20" value="1"></td>
+                            <td><input type="number" name="campaign_br20" value="1"></td>
+                            <td><input type="number" name="touchpoint_br20" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 25 (เชียงใหม่)</td>
+                            <td><input type="number" name="media_br25" value="1"></td>
+                            <td><input type="number" name="campaign_br25" value="1"></td>
+                            <td><input type="number" name="touchpoint_br25" value="1"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <div>
+                <div>
+                    <h2>Event Information NE</h2>
+                </div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Marketing Media</th>
+                            <th>Marketing Campaign</th>
+                            <th>Marketing Touchpoint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Branch 24 (ขอนแก่น)</td>
+                            <td><input type="number" name="media_br24" value="1"></td>
+                            <td><input type="number" name="campaign_br24" value="1"></td>
+                            <td><input type="number" name="touchpoint_br24" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 1 (อุดรธานี)</td>
+                            <td><input type="number" name="media_br1" value="1"></td>
+                            <td><input type="number" name="campaign_br1" value="1"></td>
+                            <td><input type="number" name="touchpoint_br1" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 22 (โคราช)</td>
+                            <td><input type="number" name="media_br22" value="1"></td>
+                            <td><input type="number" name="campaign_br22" value="1"></td>
+                            <td><input type="number" name="touchpoint_br22" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 28 (มหาสารคาม)</td>
+                            <td><input type="number" name="media_br28" value="1"></td>
+                            <td><input type="number" name="campaign_br28" value="1"></td>
+                            <td><input type="number" name="touchpoint_br28" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 30 (อุบลราชธานี)</td>
+                            <td><input type="number" name="media_br30" value="1"></td>
+                            <td><input type="number" name="campaign_br30" value="1"></td>
+                            <td><input type="number" name="touchpoint_br30" value="1"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <div>
+                <div>
+                    <h2>Event Information S</h2>
+                </div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Marketing Media</th>
+                            <th>Marketing Campaign</th>
+                            <th>Marketing Touchpoint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Branch 17 (สุราษฎร์ธานี)</td>
+                            <td><input type="number" name="media_br17" value="1"></td>
+                            <td><input type="number" name="campaign_br17" value="1"></td>
+                            <td><input type="number" name="touchpoint_br17" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 12 (ตรัง)</td>
+                            <td><input type="number" name="media_br12" value="1"></td>
+                            <td><input type="number" name="campaign_br12" value="1"></td>
+                            <td><input type="number" name="touchpoint_br12" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 21 (ภูเก็ต)</td>
+                            <td><input type="number" name="media_br21" value="1"></td>
+                            <td><input type="number" name="campaign_br21" value="1"></td>
+                            <td><input type="number" name="touchpoint_br21" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 26 (สงขลา)</td>
+                            <td><input type="number" name="media_br26" value="1"></td>
+                            <td><input type="number" name="campaign_br26" value="1"></td>
+                            <td><input type="number" name="touchpoint_br26" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 27 (สงขลา)</td>
+                            <td><input type="number" name="media_br27" value="1"></td>
+                            <td><input type="number" name="campaign_br27" value="1"></td>
+                            <td><input type="number" name="touchpoint_br27" value="1"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <div>
+                <div>
+                    <h2>Event Information W</h2>
+                </div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Marketing Media</th>
+                            <th>Marketing Campaign</th>
+                            <th>Marketing Touchpoint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Branch 23 (นครปฐม)</td>
+                            <td><input type="number" name="media_br23" value="1"></td>
+                            <td><input type="number" name="campaign_br23" value="1"></td>
+                            <td><input type="number" name="touchpoint_br23" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 3 (ประจวบคีรีขันธ์)</td>
+                            <td><input type="number" name="media_br3" value="1"></td>
+                            <td><input type="number" name="campaign_br3" value="1"></td>
+                            <td><input type="number" name="touchpoint_br3" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 14 (ราชบุรี)</td>
+                            <td><input type="number" name="media_br14" value="1"></td>
+                            <td><input type="number" name="campaign_br14" value="1"></td>
+                            <td><input type="number" name="touchpoint_br14" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 15 (นครสวรรค์)</td>
+                            <td><input type="number" name="media_br15" value="1"></td>
+                            <td><input type="number" name="campaign_br15" value="1"></td>
+                            <td><input type="number" name="touchpoint_br15" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Branch 16 (เพชรบุรี)</td>
+                            <td><input type="number" name="media_br16" value="1"></td>
+                            <td><input type="number" name="campaign_br16" value="1"></td>
+                            <td><input type="number" name="touchpoint_br16" value="1"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+
+            {{ demand_date_form.as_p }}
+            <input type="submit" value="Generate Demand">
+        </form>
+    </div>
+</body>
+</html>
+ 
