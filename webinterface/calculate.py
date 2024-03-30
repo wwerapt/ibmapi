@@ -24,4 +24,7 @@ def calculate_values(post_data):
         branch_results[f"xbr{i}"] = branch_result
         
     print(branch_results)
+
+    
+
     return branch_results
