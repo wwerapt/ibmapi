@@ -40,7 +40,7 @@ def calculate_values(post_data):
 
     print(xbr)
 
-    print(day_value)
+    print(f"Day : {day_value}")
 
     #------------- living area --------------------------------
 
@@ -62,13 +62,13 @@ def calculate_values(post_data):
                         1,1,1,1,1,
                         1,1,1,1,1,
                         1,1,1,1,1,
-                        1,1,1,1,2],
+                        1,1,1,1,1],
     'heatmap': [1,1,1,1,1,
                 1,1,1,1,1,
                 1,1,1,1,1,
-                1,1,1,5,1,
                 1,1,1,1,1,
-                1.2,1.5,1.3,1.05,2]
+                1,1,1,1,1,
+                1.2,1.5,1.3,1.05,1]
     }
 
     # Create the DataFrame
@@ -94,11 +94,12 @@ def calculate_values(post_data):
 
     #------------- Mock Total Demand Branch --------------------------------
 
-    # Set the random seed for reproducibility
-    np.random.seed(42)
+    base_demand = [226, 225, 224, 134, 229, 165, 157, 108, 89, 165, 271, 232, 259, 210, 175, 164, 194, 78, 290, 148, 211, 165, 174, 109, 93, 206, 81, 203, 231, 139]
+    slope = [0.054273241, 0.271995412, 0.302907078, 0.02742411, 0.274343123, 0.120269431, 0.032131233, 0.045208079, 0.018214521, 0.033768493, 0.343679828, 0.322949591, 0.285961273, 0.213831741, 0.081781297, 0.033563836, 0.25935647, 0.015963288, 0.325316914, 0.030289315, 0.292657411, 0.033768493, 0.176492212, 0.022307671, 0.019033151, 0.275217613, 0.01657726, 0.048768744, 0.292951313, 0.101618129]
+    percentage = [7, 18, 21, 8, 18, 35, 13, 9, 16, 8, 19, 22, 16, 14, 34, 12, 20, 16, 16, 11, 21, 7, 14, 33, 21, 20, 16, 7, 19, 11]
 
-    # Generate random demand for each branch
-    demand = np.random.randint(500, 1201, size=30)
+    # Calculate demand for each branch and round up
+    demand = [math.ceil(int(day_value) * slope[i] + base_demand[i]) for i in range(len(base_demand))]
 
     # Create a DataFrame to store branch number and demand
     branch_demand = pd.DataFrame({
@@ -123,6 +124,12 @@ def calculate_values(post_data):
 
     # Round up to the nearest integer
     branch_demand['total_demand'] = np.ceil(branch_demand['total_demand']).astype(int)
+
+    
+    def Fluctuate(TotalDemand, Percentage):
+        return round(TotalDemand + random.random() * (TotalDemand * Percentage * 2) - TotalDemand * Percentage)
+    
+    branch_demand['fluctuate'] = [Fluctuate(branch_demand.loc[i, 'total_demand'], percentage[i]/100) for i in range(len(branch_demand))]
 
     branch_proportions = {
         'br1': {'ProductA': 0.20, 'ProductB': 0.30, 'ProductC': 0.25, 'ProductD': 0.25},
@@ -161,7 +168,7 @@ def calculate_values(post_data):
     def calculate_custom_product_demand(row):
         props = branch_proportions.get(row['branch'])
         for product, proportion in props.items():
-            row[product] = math.ceil(row['total_demand'] * proportion)
+            row[product] = math.ceil(row['fluctuate'] * proportion)
         return row
 
 
@@ -200,7 +207,7 @@ def calculate_values(post_data):
             age = generate_age(age_str)
 
             # Initialize transaction with all product keys set to 0 and include persona info
-            transaction = { 'productA': 0, 'productB': 0, 'productC': 0, 'productD': 0, 'gender': gender, 'age': age }
+            transaction = { 'day':int(day_value),'promotion':0,'tel':0,'productA': 0, 'productB': 0, 'productC': 0, 'productD': 0, 'gender': gender, 'age': age }
 
             # Probability of adding each additional product
             add_product_prob = 1.0
@@ -238,6 +245,6 @@ def calculate_values(post_data):
 
     # Show a summary of generated transactions for all branches
     print(f"Total transactions generated for all branches: {len(all_branch_transactions)}")
-
+    #print(all_branch_transactions)
     
     return branch_results
